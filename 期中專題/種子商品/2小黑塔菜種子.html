@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="zh-hant">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="浪草植人|植物｜種子｜盆栽｜希望小小的綠色生命可以療癒你的心。">
+    <meta name="keywords" content="浪草植人">
+    <title>小黑塔菜種子</title>
+    <link rel="shortcut icon" type="image/png" href="./圖片/logo1.png">
+    <link rel="stylesheet" type="text/css" href="./種子商品樣式.css">
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <style type="text/css">
+      a:hover, a:active {
+        cursor: url(https://cur.cursors-4u.net/nature/nat-10/nat967.cur), auto !important;
+      }
+    </style>
+    <a href="https://www.cursors-4u.com/cursor/2011/12/04/leaf-20.html" target="_blank" title="Leaf">
+      <img src="https://cur.cursors-4u.net/cursor.png" border="0" alt="Leaf" style="position:absolute; top: 0px; right: 0px;">
+    </a>
+    <script>
+      function increaseQty() {
+        var qtyInput = document.getElementById('qty');
+        var qty = parseInt(qtyInput.value);
+        qtyInput.value = qty + 1;
+      }
+      function decreaseQty() {
+        var qtyInput = document.getElementById('qty');
+        var qty = parseInt(qtyInput.value);
+        if (qty > 1) {
+          qtyInput.value = qty - 1;
+        }
+      }
+    </script>
+    <script>
+      window.onload = function() {
+        fetch('植物.json')
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(data) {
+          console.log(data);
+          let plants = data;
+          for (let i = 1; i < 2; i++) {
+            let span = document.createElement('span');
+            let name = plants["種子"][i].內容物;
+            let nameNode = document.createTextNode(name);
+            span.appendChild(nameNode);
+            document.getElementById("one").appendChild(span);
+          }
+          for (let i = 1; i < 2; i++) {
+            let span = document.createElement('span');
+            let name = plants["種子"][i].一包種子栽種次數;
+            let nameNode = document.createTextNode(name);
+            span.appendChild(nameNode);
+            document.getElementById("two").appendChild(span);
+          }
+          for (let i = 1; i < 2; i++) {
+            let span = document.createElement('span');
+            let name = plants["種子"][i].發芽天數;
+            let nameNode = document.createTextNode(name);
+            span.appendChild(nameNode);
+            document.getElementById("three").appendChild(span);
+          }
+          for (let i = 1; i < 2; i++) {
+            let span = document.createElement('span');
+            let name = plants["種子"][i].收成時間;
+            let nameNode = document.createTextNode(name);
+            span.appendChild(nameNode);
+            document.getElementById("four").appendChild(span);
+          }
+          for (let i = 1; i < 2; i++) {
+            let span = document.createElement('span');
+            let name = plants["種子"][i].栽種季節;
+            let nameNode = document.createTextNode(name);
+            span.appendChild(nameNode);
+            document.getElementById("five").appendChild(span);
+          }
+          for (let i = 1; i < 2; i++) {
+            let span = document.createElement('span');
+            let name = plants["種子"][i].種子保存;
+            let nameNode = document.createTextNode(name);
+            span.appendChild(nameNode);
+            document.getElementById("six").appendChild(span);
+          }
+        });
+      }
+    </script> 
+    <script>
+      $(document).ready(function() {
+        $('button.car').click(function() {
+          // 取得商品名稱、圖片路徑、數量和價錢
+          let name = $(this).closest('.introduce').find('.name').text().trim()
+          let img = $(this).closest('.introduce').find('.img').attr('src')
+          let qty = parseInt($('#qty').val())
+          let price = parseInt($(this).closest('.introduce').find('.price').text().replace('NT$', ''))
+
+          // 儲存到 localStorage
+          let cartItems = JSON.parse(localStorage.getItem('cartItems')) || []
+          let existingItem = cartItems.find(item => item.name === name)
+          if (existingItem) {
+            existingItem.qty += qty
+            existingItem.price += qty * price
+          } else {
+            cartItems.push({ name: name, img: img, qty: qty, price: qty * price })
+          }
+          localStorage.setItem('cartItems', JSON.stringify(cartItems))
+        })
+      })
+    </script> 
+    <script>
+      function showMessage() {
+        alert("已加入購物車");
+      }
+    </script>    
+  </head>
+  <body>
+    <div class="divposition">
+      <a href="/期中專題/登入會員.html" class="radiusBorder" id="member"><span>登入會員</span></a> 
+      <a href="/期中專題/購物車.html" class="radiusBorder" id="shoppingcar"><span>購物車</span></a> 
+      <a href="/期中專題/聯絡我們.html" class="radiusBorder" id="connect"><span>聯絡我們</span></a> 
+    </div>
+    <br>
+    <br>
+    <div style="text-align: center">
+      <a href="/期中專題/首頁/首頁.html">
+        <img src="./圖片/浪草植人.png" alt="浪草植人" style="max-width:100%; height:auto">
+      </a>
+    </div>
+    <img src="./圖片/Love Plants.png" alt="Love Plants" style="display: block; margin: auto; max-width:100px; height:auto">
+    <br>
+    <br>
+    <div class="menu-container">
+      <ul class="menu">
+        <li>
+          <a href="/期中專題/1關於我們/我們.html" class="menutext">關於我們</a>
+        </li>
+        <li>
+          <a href="/期中專題/2療癒植物/植物.html" class="menutext">療癒植物</a>
+        </li>
+        <li>
+          <a href="/期中專題/3迷人種子/種子.html" class="menutext">迷人種子</a>
+        </li>
+        <li>
+          <a href="/期中專題/4暖心盆栽/盆栽.html" class="menutext">暖心盆栽</a>
+        </li>
+        <li>
+          <a href="/期中專題/5購物須知/須知.html" class="menutext">購物須知</a>
+        </li>
+        <li>
+          <a href="/期中專題/6聊聊栽種/栽種.html" class="menutext">聊聊栽種</a>
+        </li>
+      </ul>
+    </div>
+    <br>
+    <br>
+    <br>
+    <a class="plantsproducts"href="/期中專題/3迷人種子/種子.html"><b>種子 全部商品</b></a>
+    <br>
+    <br>
+    <br>
+    <div class="introduce">
+      <img class="img" src="https://shoplineimg.com/56459fdfe37ec62d7900002d/5bd4a02c8154990012e0638f/800x.webp?source_format=jpg" alt="小黑塔菜種子">
+      <div class="content">
+        <p class="name"><b>小 黑 塔 菜 種 子</b></p>
+        <p class="price">NT$60</p>
+        <p class="freight"><b>全店滿1000元免運！</b><br>◼︎ 訂單 0~500元運費 100 元<br>◼︎ 訂單 500~1000元運費 80 元</p>
+        <div class="quantity">
+          <label for="qty">數量：</label>
+          <button class="minus-btn" onclick="decreaseQty()">-</button>
+          <input type="text" id="qty" value="1" style="text-align: center;">
+          <button class="plus-btn" onclick="increaseQty()">+</button>
+        </div>
+        <br>
+        <br>
+        <div>
+          <a href="">
+            <button class="car" onclick="showMessage()">加入購物車</button>
+          </a>
+        </div>
+        <br>
+        <br>
+        <div>
+          <div>
+            <div class="bottomline">
+              <span style="font-size: 15px;">付款方式</span>
+            </div>
+            <div class="text-top">
+              <ul class="list">
+                <li>信用卡</li>
+                <li>銀行ATM轉帳</li>
+              </ul>
+            </div>
+          </div>
+          <div>
+            <div class="bottomline">
+              <span style="font-size: 15px;">送貨方式</span>
+            </div>
+            <div class="text-top">
+              <ul class="list">
+                <li>黑貓宅配</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <br>
+    <hr class="line">
+    <br>
+    <h3 style="text-align: center;"><   商  品  描  述   ></h3>
+    <img class="picture" src="https://shoplineimg.com/56459fdfe37ec62d7900002d/5bd09ff50e316b000e70315f/1600x.webp?source_format=jpg" alt="種子">
+    <div class="write">
+      <p>
+        小生菜所擁有的營養成分與大蔬菜一樣，吃起來風味獨特，稍微的甜，涼爽清口<br>建議等7-10天小菜吸收養分後，以川燙清炒食用為佳
+      </p>
+    </div>
+    <br>
+    <br>
+    <div style="margin-left: 30px;">
+      <div class="title"><b>◼︎ 內容物</b></div>
+      <div id="one" class="text"></div>
+      <br>
+      <div class="title"><b>◼︎ 一包種子栽種次數</b></div>
+      <div id="two" class="text"></div>
+      <br>
+      <div class="title"><b>◼︎ 發芽天數</b></div>
+      <div id="three" class="text"></div>
+      <br>
+      <div class="title"><b>◼︎ 收成時間</b></div>
+      <div id="four" class="text"></div>
+      <br>
+      <div class="title"><b>◼︎ 栽種季節</b></div>
+      <div id="five" class="text"></div>
+      <br>
+      <div class="title"><b>◼︎ 種子保存</b></div>
+      <div id="six" class="text"></div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <img class="picture" src="https://shoplineimg.com/56459fdfe37ec62d7900002d/5bd49fb8e829d70012b4f857/1600x.webp?source_format=jpg" alt="小黑塔菜種子">
+    <br>
+    <br>
+    <br>
+    <img class="picturestep" src="./圖片/播種教學.jpg" alt="播種教學">
+    <br>
+    <br>
+    <hr>
+    <div style="text-align: center; margin-left: 60px">
+      <a href="https://www.instagram.com/laiveitsai/"><img style="width: 3.1%; margin-right: 20px; margin-bottom: 50px;" src="./圖片/IG圖案.png" alt="IG圖案"></a>
+      <a href="https://www.facebook.com/laiveitsai/?locale=zh_TW"><img style="width: 3%; margin-right: 40px; margin-bottom: 50px;" src="./圖片/FB圖案.png" alt="FB圖案"></a>
+      <footer class="information">
+        <p>客服時間 | Mon. to Fri. 9:30 ~ 18:30</p>
+        <br>
+        <p>聯絡電話 | 04-2680-3955</p>
+        <br>
+        <p>工作室 | 台中市大甲區德興路165號</p>
+        <br>
+        <p>信箱 | laiveitsai@gmail.com</p>
+        <br>
+      </footer>
+      <span style="margin-right: 30px;"></span>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3634.8697874557865!2d120.62190089999999!3d24.3510281!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34690e00eec62983%3A0x57286d95ff907fd7!2zNDM35Y-w5Lit5biC5aSn55Sy5Y2A5b636IiI6LevMTY16Jmf!5e0!3m2!1szh-TW!2stw!4v1680615907317!5m2!1szh-TW!2stw" 
+        width="250" height="120" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+    <div>
+      <a href="#top"><img class="up" src="./圖片/向上箭頭.jpg" alt="回到最上面"></a>
+    </div>
+  </body>
+</html>
